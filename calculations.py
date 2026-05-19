@@ -20,9 +20,10 @@ def calculate_stock_preparation(mw, mass_mg, volume_options=[0.5, 1.0, 2.0]):
     moles_umol = moles_mmol * 1000  # µmol
     
     # Calculate concentrations for different volumes
+    # IMPORTANT: mmol/mL = M, so multiply by 1000 to get mM
     stock_options = []
     for vol_ml in volume_options:
-        conc_mM = moles_mmol / vol_ml
+        conc_mM = (moles_mmol / vol_ml) * 1000  # Convert M → mM
         stock_options.append({
             'volume_ml': vol_ml,
             'concentration_mM': conc_mM,
@@ -34,7 +35,8 @@ def calculate_stock_preparation(mw, mass_mg, volume_options=[0.5, 1.0, 2.0]):
     is_limited = moles_umol < 10
     
     # Recommended stock (at 1 mL)
-    recommended_conc = moles_mmol / 1.0  # 1 mL volume
+    # mmol/mL = M, multiply by 1000 to get mM
+    recommended_conc = (moles_mmol / 1.0) * 1000  # Convert M → mM
     
     return {
         'mw': mw,

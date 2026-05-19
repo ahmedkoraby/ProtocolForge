@@ -120,38 +120,87 @@ if mode == "Stock Prep":
             )
             
             if dilution_scenario == "50 µM Top (Uncertain EC50)":
-                st.info(f"""
-                **To make 50 µM working solution from {result['recommended_conc_mM']:.2f} mM stock:**
+                stock_conc = result['recommended_conc_mM']
+                target_dose = 50  # µM
+                final_vol = 1000  # µL
+                target_dmso_pct = 0.2
                 
-                For 1 mL working solution:
-                - Stock needed: {(50 / result['recommended_conc_mM']):.2f} µL
-                - DMSO (100%): {100 - (50 / result['recommended_conc_mM']):.2f} µL
-                - Culture media: {900 - (50 / result['recommended_conc_mM']):.2f} µL
-                - **Final:** 1 mL @ 50 µM, 0.2% DMSO
+                stock_vol = (target_dose * final_vol) / (stock_conc * 1000)
+                total_dmso_needed = final_vol * (target_dmso_pct / 100)
+                media_vol = final_vol - stock_vol
+                actual_dmso_pct = (stock_vol / final_vol) * 100
                 
-                Then do 3-fold serial dilutions: 50 → 16.7 → 5.6 → 1.85 → 0.62 → 0.21 → 0.07 → 0.023 µM
-                """)
+                if stock_vol > final_vol:
+                    st.error(f"""
+                    ❌ **Impossible dilution:** Stock is too dilute.
+                    
+                    To make 50 µM from {stock_conc:.2f} mM stock, you would need {stock_vol:.0f} µL stock in a {final_vol} µL final volume.
+                    
+                    **Solution:** Use a more concentrated stock (prepare from your 50 mM stock first).
+                    """)
+                elif stock_vol > total_dmso_needed:
+                    st.warning(f"""
+                    ⚠️ **DMSO too high:** {actual_dmso_pct:.2f}% DMSO (target: {target_dmso_pct:.2f}%)
+                    
+                    For 1 mL @ 50 µM from {stock_conc:.2f} mM stock:
+                    - Stock needed: {stock_vol:.2f} µL
+                    - Media: {media_vol:.2f} µL
+                    - **Actual DMSO: {actual_dmso_pct:.3f}%**
+                    
+                    **To achieve exactly {target_dmso_pct}% DMSO**, your stock must be ≥{(target_dose * final_vol) / (final_vol * target_dmso_pct / 100 * 1000):.1f} mM.
+                    """)
+                else:
+                    st.success(f"""
+                    ✅ **Correct dilution:**
+                    
+                    For 1 mL @ 50 µM from {stock_conc:.2f} mM stock:
+                    - Stock (100% DMSO): {stock_vol:.2f} µL
+                    - Culture media: {media_vol:.2f} µL
+                    - **Final DMSO: {actual_dmso_pct:.3f}%** ✓
+                    
+                    Then do 3-fold serial dilutions: 50 → 16.7 → 5.6 → 1.85 → 0.62 → 0.21 → 0.07 → 0.023 µM
+                    """)
+
             
             elif dilution_scenario == "100 nM Top (Nanomolar potency)":
-                st.info(f"""
-                **To make 100 nM working solution from {result['recommended_conc_mM']:.2f} mM stock:**
+                stock_conc = result['recommended_conc_mM']
+                target_dose = 0.1  # 100 nM = 0.1 µM
+                final_vol = 1000  # µL
+                target_dmso_pct = 0.2
                 
-                **Two-step approach (large dilution factor):**
+                # For nM range, usually need intermediate dilution
+                stock_vol_direct = (target_dose * final_vol) / (stock_conc * 1000)
                 
-                Step 1 - Make intermediate 10 µM solution:
-                - Stock needed: {(10 / result['recommended_conc_mM']):.2f} µL
-                - DMSO (100%): {100 - (10 / result['recommended_conc_mM']):.2f} µL
-                - Media: {900 - (10 / result['recommended_conc_mM']):.2f} µL
-                - **Result:** 1 mL @ 10 µM
-                
-                Step 2 - From 10 µM → make 100 nM working solution:
-                - 10 µM stock: 10 µL
-                - DMSO (100%): 5 µL
-                - Media: 985 µL
-                - **Result:** 1 mL @ 100 nM, 0.2% DMSO
-                
-                Then do 3-fold serial dilutions: 100 → 33 → 11 → 3.7 → 1.2 → 0.41 → 0.14 → 0.046 nM
-                """)
+                if stock_vol_direct < 0.1:
+                    st.info(f"""
+                    **To make 100 nM working solution (two-step dilution):**
+                    
+                    Direct dilution from {stock_conc:.2f} mM stock would need <0.1 µL (not pipettable).
+                    Use two-step approach:
+                    
+                    **Step 1: Make intermediate 10 µM solution:**
+                    - Stock ({stock_conc:.2f} mM): {(10 / stock_conc):.3f} µL
+                    - Media: {1000 - (10 / stock_conc):.1f} µL
+                    - Result: 1 mL @ 10 µM
+                    
+                    **Step 2: From 10 µM → 100 nM:**
+                    - 10 µM stock: 10 µL
+                    - Media: 990 µL
+                    - Result: 1 mL @ 100 nM, ~0.001% DMSO ✓
+                    
+                    Then do 3-fold serial dilutions: 100 → 33 → 11 → 3.7 → 1.2 → 0.41 → 0.14 → 0.046 nM
+                    """)
+                else:
+                    actual_dmso_pct = (stock_vol_direct / final_vol) * 100
+                    st.success(f"""
+                    **Direct dilution to 100 nM:**
+                    
+                    From {stock_conc:.2f} mM stock:
+                    - Stock: {stock_vol_direct:.2f} µL
+                    - Media: {final_vol - stock_vol_direct:.2f} µL
+                    - Final DMSO: {actual_dmso_pct:.3f}% ✓
+                    """)
+
             
             else:  # Wide Scout
                 st.info(f"""
