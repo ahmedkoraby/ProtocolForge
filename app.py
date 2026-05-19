@@ -1,4 +1,4 @@
-"""ProtocolForge - Automated Dilution Protocol Generator (No RDKit)"""
+"""ProtocolForge - Automated Dilution Protocol Generator"""
 
 import streamlit as st
 import pandas as pd
