@@ -112,11 +112,6 @@ Examples of valid SMILES:
 - `CC(C)Cc1ccc(cc1)C(C)C(O)=O` (ibuprofen)
 - `Cc1ccccc1` (toluene)
 
-### App Won't Load on Streamlit Cloud
-
-1. Check that Python version is set to **3.10+** in app settings
-2. Wait 2-3 minutes for initial deployment
-3. Clear browser cache and refresh
 
 ## File Structure
 
