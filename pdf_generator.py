@@ -1,4 +1,4 @@
-"""Enhanced PDF protocol generation with QR codes, dates, professional formatting"""
+
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
