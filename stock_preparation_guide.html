@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Solution Preparation Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f9f9f9;
+            font-size: 13px;
+        }
+        .data-table th {
+            background: #667eea;
+            color: white;
+            padding: 14px 10px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+        }
+        .data-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .data-table tr:hover {
+            background: #f0f0f0;
+        }
+        .data-table tr.header-row {
+            background: #e8eef7;
+            font-weight: 600;
+        }
+        
+        /* Status colors */
+        .status-good { background-color: #d4edda; }
+        .status-limited { background-color: #fff3cd; }
+        .status-missing { background-color: #f8d7da; }
+        
+        .highlight {
+            background: #fffacd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        /* Cards */
+        .info-card {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .info-card h3 {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .info-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Tips */
+        .tip-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .tip-box strong {
+            color: #856404;
+        }
+        .tip-box ul {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        .tip-box li {
+            margin-bottom: 8px;
+        }
+        
+        /* Recommendation Box */
+        .rec-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .rec-box h3 {
+            color: #155724;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .rec-box p {
+            color: #155724;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        .calc-details {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Solution Preparation</h1>
+        <p class="subtitle">RSV Fusion Inhibitors | 10 Compounds | DMSO Stock Solutions</p>
+        
+        <!-- CALCULATIONS TABLE -->
+        <div class="section">
+            <div class="section-title">Step 1: Moles Available & Stock Concentration Options</div>
+            
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Compound Code</th>
+                            <th>MW (g/mol)</th>
+                            <th>Mass Available</th>
+                            <th>Moles</th>
+                            <th colspan="3">Stock Options (in DMSO)</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>0.5 mL vol</th>
+                            <th>1 mL vol</th>
+                            <th>2 mL vol</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Have mass data -->
+                        <tr class="status-good">
+                            <td><strong>AO-c284</strong></td>
+                            <td>421.4</td>
+                            <td>9.2 mg</td>
+                            <td>21.8 µmol</td>
+                            <td><span class="highlight">43.6 mM</span></td>
+                            <td><span class="highlight">21.8 mM</span></td>
+                            <td>10.9 mM</td>
+                            <td>✓ Good</td>
+                        </tr>
+                        <tr class="status-good">
+                            <td><strong>AO-c291</strong></td>
+                            <td>439.39</td>
+                            <td>11.4 mg</td>
+                            <td>25.9 µmol</td>
+                            <td><span class="highlight">51.8 mM</span></td>
+                            <td><span class="highlight">25.9 mM</span></td>
+                            <td>13.0 mM</td>
+                            <td>✓ Good</td>
+                        </tr>
+                        <tr class="status-good">
+                            <td><strong>AO-c300</strong></td>
+                            <td>437.09</td>
+                            <td>3.3 mg</td>
+                            <td>7.55 µmol</td>
+                            <td>15.1 mM</td>
+                            <td><span class="highlight">7.55 mM</span></td>
+                            <td>3.78 mM</td>
+                            <td>⚠️ Limited</td>
+                        </tr>
+                        <tr class="status-good">
+                            <td><strong>AO-c301</strong></td>
+                            <td>417.44</td>
+                            <td>4.5 mg</td>
+                            <td>10.8 µmol</td>
+                            <td>21.6 mM</td>
+                            <td><span class="highlight">10.8 mM</span></td>
+                            <td>5.4 mM</td>
+                            <td>✓ Good</td>
+                        </tr>
+                        <tr class="status-good">
+                            <td><strong>AO-RVP-304</strong></td>
+                            <td>447.21</td>
+                            <td>2.9 mg</td>
+                            <td>6.48 µmol</td>
+                            <td>12.96 mM</td>
+                            <td><span class="highlight">6.48 mM</span></td>
+                            <td>3.24 mM</td>
+                            <td>⚠️ Limited</td>
+                        </tr>
+                        <tr class="status-good">
+                            <td><strong>AO-RVP-311</strong></td>
+                            <td>509.54</td>
+                            <td>5.5 mg</td>
+                            <td>10.8 µmol</td>
+                            <td>21.6 mM</td>
+                            <td><span class="highlight">10.8 mM</span></td>
+                            <td>5.4 mM</td>
+                            <td>✓ Good</td>
+                        </tr>
+                        
+                        <!-- Missing mass data -->
+                        <tr class="status-missing">
+                            <td><strong>AO-RVP-310</strong></td>
+                            <td>465.53</td>
+                            <td>NOT PROVIDED</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>❌ No data</td>
+                        </tr>
+                        <tr class="status-missing">
+                            <td><strong>AO-RVF-33</strong></td>
+                            <td>434.91</td>
+                            <td>NOT PROVIDED</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>❌ No data</td>
+                        </tr>
+                        <tr class="status-missing">
+                            <td><strong>AO-RVF-34</strong></td>
+                            <td>434.91</td>
+                            <td>NOT PROVIDED</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>❌ No data</td>
+                        </tr>
+                        <tr class="status-missing">
+                            <td><strong>AO-RVF-35</strong></td>
+                            <td>417.91</td>
+                            <td>NOT PROVIDED</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>❌ No data</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="calc-details">
+                💡 Highlighted values are the <strong>recommended stock concentrations</strong>. These balance practical handling (1 mL or 0.5 mL volumes are easy to pipette) with downstream flexibility.
+            </div>
+        </div>
+        
+        <!-- RECOMMENDATION -->
+        <div class="section">
+            <div class="rec-box">
+                <h3>✓ Recommended Stock Concentrations</h3>
+                <p>
+                    <strong>Make 1 mL stocks in DMSO</strong> for compounds with sufficient mass. This gives you:
+                </p>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>AO-c284: <strong>21.8 mM</strong></li>
+                    <li>AO-c291: <strong>25.9 mM</strong></li>
+                    <li>AO-c300: <strong>7.55 mM</strong> (limited by small mass)</li>
+                    <li>AO-c301: <strong>10.8 mM</strong></li>
+                    <li>AO-RVP-304: <strong>6.48 mM</strong> (limited by small mass)</li>
+                    <li>AO-RVP-311: <strong>10.8 mM</strong></li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    <strong>Why 1 mL?</strong> Standard 1.5 mL Eppendorf tubes, easy to pipette 20 µL accurately, and sufficient for all downstream 50 µM top conc. experiments. For the limited-mass compounds (AO-c300, AO-RVP-304), 1 mL gives ~7–6.5 mM, which is still workable.
+                </p>
+            </div>
+        </div>
+        
+        <!-- PRACTICAL PREP TABLE -->
+        <div class="section">
+            <div class="section-title">Step 2: Dissolution Protocol (for each compound)</div>
+            
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Compound</th>
+                            <th>Mass</th>
+                            <th>Add to 1 mL tube</th>
+                            <th>Final Stock Conc.</th>
+                            <th>Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>AO-c284</strong></td>
+                            <td>9.2 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>21.8 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AO-c291</strong></td>
+                            <td>11.4 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>25.9 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AO-c300</strong></td>
+                            <td>3.3 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>7.55 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AO-c301</strong></td>
+                            <td>4.5 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>10.8 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AO-RVP-304</strong></td>
+                            <td>2.9 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>6.48 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AO-RVP-311</strong></td>
+                            <td>5.5 mg</td>
+                            <td><span class="highlight">DMSO 1 mL</span></td>
+                            <td>10.8 mM</td>
+                            <td>Dissolve at room temp, vortex 2–3 min until clear</td>
+                        </tr>
+                        <tr style="background: #f8d7da;">
+                            <td colspan="5"><strong>❌ AO-RVP-310, AO-RVF-33, AO-RVF-34, AO-RVF-35:</strong> Mass data missing — cannot prepare without knowing how much compound you have. <em>Please provide masses for these 4 compounds.</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- DOWNSTREAM DILUTION FLEXIBILITY -->
+        <div class="section">
+            <div class="section-title">Step 3: Downstream Flexibility (from these stocks)</div>
+            
+            <div class="info-card">
+                <h3>Option A: 50 µM Top (your current plan)</h3>
+                <p>
+                    <strong>Example with AO-c284 (21.8 mM stock):</strong>
+                </p>
+                <ul style="margin-top: 10px; margin-left: 20px; font-size: 13px; line-height: 1.6;">
+                    <li>Dilute 21.8 mM stock <strong>~430-fold</strong> to get 50 µM working solution</li>
+                    <li>For 1 mL working soln: <strong>2.3 µL stock + 180 µL DMSO + 818 µL media</strong></li>
+                    <li>Then 3-fold serial dilutions: 50 µM → 16.7 µM → 5.6 µM → ... → 23 nM</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>Option B: 100 nM Top (if EC50 is nM-potency)</h3>
+                <p>
+                    <strong>Example with AO-c284 (21.8 mM stock):</strong>
+                </p>
+                <ul style="margin-top: 10px; margin-left: 20px; font-size: 13px; line-height: 1.6;">
+                    <li>Dilute 21.8 mM stock <strong>~218,000-fold</strong> to get 100 nM working solution</li>
+                    <li>This requires intermediate dilution steps (can't do directly)</li>
+                    <li>Better: Make intermediate 10 µM stock first, then dilute to 100 nM</li>
+                    <li>Then 3-fold serial dilutions: 100 nM → 33 nM → 11 nM → ... → 0.046 nM</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>Option C: Flexible "Scout" Range (to find real EC50)</h3>
+                <p>
+                    <strong>Skip intermediate dilutions; test directly from stock:</strong>
+                </p>
+                <ul style="margin-top: 10px; margin-left: 20px; font-size: 13px; line-height: 1.6;">
+                    <li>Test 1–2 compounds at 10 single-point concentrations</li>
+                    <li>Use stock at different 1:10, 1:100, 1:1000, 1:10,000 etc. dilution factors</li>
+                    <li>See where activity appears — tells you EC50 ballpark</li>
+                    <li>Then design Plates 1–3 with appropriate top/bottom range</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- OPTIMAL STOCK CONC RATIONALE -->
+        <div class="section">
+            <div class="section-title">Why These Stock Concentrations?</div>
+            
+            <div class="tip-box">
+                <strong>The 5–25 mM sweet spot:</strong>
+                <ul>
+                    <li><strong>High enough:</strong> Allows reasonable dilutions downstream without working with tiny pipette volumes (&lt;1 µL is unreliable)</li>
+                    <li><strong>Low enough:</strong> Unlikely to precipitate when diluted into aqueous media or mixed with cells</li>
+                    <li><strong>Practical:</strong> 1 mL stocks are standard tube size, easy to label and store at 4°C long-term (in DMSO, stable for months)</li>
+                    <li><strong>Flexible:</strong> Can make both 50 µM and 100 nM working solutions from the same stock via intermediate dilutions</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- STORAGE & LABELING -->
+        <div class="section">
+            <div class="section-title">Storage & Labeling</div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tube type</strong></td>
+                        <td>1.5 mL Eppendorf or similar (polypropylene, DMSO-resistant)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Label format</strong></td>
+                        <td>Compound code + MW + concentration + prep date<br>Example: <code>AO-c284 | 21.8 mM | DMSO | 2025-05-19</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Storage temp</strong></td>
+                        <td><strong>4°C</strong> (refrigerator, not freezer — DMSO stays liquid at 4°C)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stability</strong></td>
+                        <td>2–6 months at 4°C in sealed tube (avoid repeated freeze-thaw)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Organization</strong></td>
+                        <td>Keep 6 stocks in one labeled rack ("Batch-1 Stocks") for quick reference</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- MISSING DATA ALERT -->
+        <div class="section">
+            <div style="background: #f8d7da; border-left: 4px solid #dc3545; padding: 20px; border-radius: 8px;">
+                <h3 style="color: #721c24; margin-bottom: 10px;">⚠️ Missing Mass Data</h3>
+                <p style="color: #721c24; font-size: 13px; line-height: 1.6;">
+                    You're missing mass information for <strong>4 compounds</strong>:
+                </p>
+                <ul style="margin-top: 10px; margin-left: 20px; color: #721c24; font-size: 13px;">
+                    <li><strong>AO-RVP-310</strong> (MW: 465.53)</li>
+                    <li><strong>AO-RVF-33</strong> (MW: 434.91)</li>
+                    <li><strong>AO-RVF-34</strong> (MW: 434.91)</li>
+                    <li><strong>AO-RVF-35</strong> (MW: 417.91)</li>
+                </ul>
+                <p style="margin-top: 10px; color: #721c24; font-size: 13px;">
+                    <strong>Next steps:</strong> Weigh these 4 compounds and provide the masses so I can calculate their optimal stock concentrations.
+                </p>
+            </div>
+        </div>
+        
+        <!-- SUMMARY -->
+        <div class="section">
+            <div class="rec-box">
+                <h3>✓ Summary: Recommended Protocol</h3>
+                <p>
+                    <strong>1. Prepare 6 stocks (1 mL each in DMSO):</strong>
+                </p>
+                <ul style="margin-left: 20px; font-size: 13px; line-height: 1.8;">
+                    <li>AO-c284: 21.8 mM</li>
+                    <li>AO-c291: 25.9 mM</li>
+                    <li>AO-c300: 7.55 mM</li>
+                    <li>AO-c301: 10.8 mM</li>
+                    <li>AO-RVP-304: 6.48 mM</li>
+                    <li>AO-RVP-311: 10.8 mM</li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    <strong>2. Once you have masses for the remaining 4 compounds,</strong> prepare their stocks using the same 1 mL approach.
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>3. From these stocks,</strong> you can flexibly make either:
+                </p>
+                <ul style="margin-left: 20px; font-size: 13px; line-height: 1.8;">
+                    <li>50 µM working solutions (if EC50 is µM potency)</li>
+                    <li>100 nM working solutions (if EC50 is nM potency)</li>
+                    <li>Wide scout range (if EC50 is truly unknown)</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 13px;">
+                    Store all stocks at 4°C. They'll last 2–6 months.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

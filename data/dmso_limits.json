@@ -1,0 +1,42 @@
+{
+  "Influenza Inhibitor (HeLa, fluorescence)": {
+    "safe": 0.3,
+    "caution": 0.5,
+    "critical": 1.0,
+    "note": "HeLa cells tolerate 0.5-1% but fluorescence artifacts >0.3%. Recommend ≤0.2% for clean GFP readout.",
+    "cell_line": "HeLa",
+    "readout": "Fluorescence (GFP)"
+  },
+  "Influenza Inhibitor (Vero, CPE)": {
+    "safe": 0.5,
+    "caution": 1.0,
+    "critical": 2.0,
+    "note": "Vero cells more tolerant. CPE assay less sensitive to DMSO. ≤0.5% maintains normal morphology.",
+    "cell_line": "Vero",
+    "readout": "CPE"
+  },
+  "Cell Viability (MTT/CCK-8)": {
+    "safe": 0.1,
+    "caution": 0.3,
+    "critical": 0.5,
+    "note": "DMSO interferes with metabolic assays. Keep as low as possible.",
+    "cell_line": "Any",
+    "readout": "Metabolic assay"
+  },
+  "Flow Cytometry": {
+    "safe": 0.2,
+    "caution": 0.5,
+    "critical": 1.0,
+    "note": "DMSO affects cell gating. ≤0.2% recommended.",
+    "cell_line": "Any",
+    "readout": "Flow cytometry"
+  },
+  "Primary Neurons": {
+    "safe": 0.05,
+    "caution": 0.1,
+    "critical": 0.2,
+    "note": "Primary neurons VERY sensitive to DMSO. Recommend <0.05%. Consider alternative solvents.",
+    "cell_line": "Primary neurons",
+    "readout": "Any"
+  }
+}
